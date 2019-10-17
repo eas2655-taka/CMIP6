@@ -1,15 +1,14 @@
 % detrend data (1850 - 2100)
 
 vars={'thetao' 'so' 'dissic' 'talk' 'o2' 'po4'};
-
-for l = 1:4 
-    
-    
-
 % define model and variable
 model='GFDL-CM4';
 run='ssp245';
 variant='r1i1p1f1';
+
+% loop over vars
+for l = 1:length(vars)
+    
 var=vars{l};%'thetao';
 if strcmp(run,'historical')
     N0=1;
@@ -46,7 +45,7 @@ for i=1:N(1)
                 Y=squeeze(pi(i,j,k,:));
                 C=cov(X,Y);
                 A(i,j,k)=C(1,2)/C(1,1);
-                tmp(i,j,k,:)=A(i,j,k)*X;
+                tmp(i,j,k,:)=A(i,j,k)*(X+N0-1);
             end
         end
     end
