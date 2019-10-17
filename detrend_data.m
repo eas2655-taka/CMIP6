@@ -45,7 +45,7 @@ for i=1:N(1)
                 Y=squeeze(pi(i,j,k,:));
                 C=cov(X,Y);
                 A(i,j,k)=C(1,2)/C(1,1);
-                tmp(i,j,k,:)=A(i,j,k)*(X+N0-1);
+                tmp(i,j,k,:)=A(i,j,k)*X;
             end
         end
     end
